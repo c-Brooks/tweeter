@@ -3,6 +3,7 @@
  * https://css-tricks.com/international-box-sizing-awareness-day/
  * Do not modify these two selectors, please
  */
+
 html {
   box-sizing: border-box;
 }
@@ -26,7 +27,7 @@ main {
   background-color: white;
   margin: auto;
   height: 140em;
-  width: 50%;
+  width: 650px;
   padding: 2em
 
 }
