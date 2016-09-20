@@ -1,0 +1,51 @@
+
+article.tweet {
+  width: auto;
+  height: 9em;
+  background-color: #e1e1ea;
+  margin: 6em 2em 6em 2em;
+  border: 5px solid black;
+  border-radius: 10px
+}
+
+
+article.tweet header {
+  height: 3em;
+  background-color: #d1b3ff;
+  /*color: white;*/
+  border-bottom: 2px solid black;
+  border-radius: 5px 5px 0 0;
+}
+
+article.tweet .avatar {
+  width: 40px;
+  height: 40px;
+  margin: 2px 2px 2px 2px;
+  float: left;
+}
+
+header .username {
+  font-size: 20px;
+  line-height: 2.2;
+}
+
+header .handle{
+  margin: 5px 5px 0 0;
+  float: right;
+}
+
+article.tweet .tweet-content {
+  margin: 1em 3em;
+  color: blue;
+}
+
+article.tweet footer {
+  height: 1em;
+  border-top: 1px solid black;
+}
+
+article.tweet .date {
+  margin: 12px 0 0  10px;
+  float: left;
+  font-size: 14px;
+}
