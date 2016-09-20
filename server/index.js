@@ -20,3 +20,6 @@ db.connect((dbInstance) => {
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+
+app.post('/tweets/', (dbInstance, )

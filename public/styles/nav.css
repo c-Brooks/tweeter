@@ -1,0 +1,38 @@
+
+/*
+body {
+  margin: 0;
+  color: #244751;
+  background-color: #cce6ff;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+*/
+
+nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  float: left;
+
+  background-color: #00a087;
+  color: #e8fdff;
+  line-height: 2.2;
+  text-align: center-vertical;
+}
+
+
+#nav-bar .logo {
+  width: 80px;
+  height: 80px;
+  margin-left: 2em;
+  margin-top: 1em;
+  float: left;
+}
+
+#nav-bar .header {
+  font-size: 3em;
+  padding: 0 0 0 10px;
+  height: auto;
+  float: left;
+}
