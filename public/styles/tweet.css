@@ -1,7 +1,7 @@
 
 article.tweet {
   width: auto;
-  height: 9em;
+  height: auto;
   background-color: #e1e1ea;
   margin: 6em 2em 6em 2em;
   border: 5px solid black;
@@ -10,42 +10,61 @@ article.tweet {
 
 
 article.tweet header {
-  height: 3em;
+  height: 50px;
   background-color: #d1b3ff;
-  /*color: white;*/
   border-bottom: 2px solid black;
   border-radius: 5px 5px 0 0;
 }
 
+/* MOUSEOVER PROPERTIES */
+article.tweet:hover > header {
+  background-color: #b380ff;
+  font-weight: bold;
+}
+footer .widgets {
+  float: right;
+  margin: 0 10px 10px 0;
+  display: none;
+}
+article.tweet:hover > footer .widgets {
+  display: block;
+}
+
 article.tweet .avatar {
-  width: 40px;
-  height: 40px;
-  margin: 2px 2px 2px 2px;
+  width: 48px;
+  height: 48px;
   float: left;
+  border-radius: 5px 0 0 0;
 }
 
 header .username {
-  font-size: 20px;
-  line-height: 2.2;
+  font-size: 25px;
+  line-height: 2.0;
 }
 
-header .handle{
+header .handle {
   margin: 5px 5px 0 0;
   float: right;
 }
 
-article.tweet .tweet-content {
-  margin: 1em 3em;
-  color: blue;
+article.tweet .content {
+  margin: 1em 4em;
+  color: black;
 }
 
+/* TODO: Height does not work, messes up for multi-line content
+ * Temp. fix: made padding for content vary low
+ * Tweets need a way to auto-format based on length !
+ */
+
 article.tweet footer {
-  height: 1em;
+  height: 2em;
+  width: 100%;
   border-top: 1px solid black;
 }
 
-article.tweet .date {
-  margin: 12px 0 0  10px;
+article.tweet .created_at {
+  padding: 12px 0 0 12px;
   float: left;
   font-size: 14px;
 }

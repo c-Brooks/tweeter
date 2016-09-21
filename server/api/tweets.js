@@ -36,7 +36,5 @@ module.exports = function(db) {
     });
     return res.redirect('/');
   });
-
-
   return tweets;
 }
