@@ -26,3 +26,13 @@ nav {
   height: auto;
   float: left;
 }
+
+#compose-btn {
+  width: 8em;
+  height: 3em;
+  background-color: white;
+  color: green;
+  font-size: 20px;
+  float: right;
+  margin: 15px 30px 0 0;
+}

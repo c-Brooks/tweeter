@@ -4,6 +4,7 @@ const User    = require("../lib/user-helper")
 const express = require('express');
 const tweets  = express.Router();
 
+
 module.exports = function(db) {
 
   tweets.get("/", function(req, res) {
@@ -14,15 +15,11 @@ module.exports = function(db) {
         return res.json(results);
       }, 300);
     });
-    //res.redirect('/');
   });
 
   tweets.post("/", function(req, res) {
-     console.log("New Tweet, Body:", req.body);
-    if (!req.body.text) {
-      res.status(400);
-      return res.send("{'error': 'invalid request'}\n");
-    }
+
+    console.log("New Tweet, Body: ", req.body);
     const user = req.body.user ? req.body.user : User.generateRandomUser();
     const tweet = {
       user: user,
@@ -34,7 +31,7 @@ module.exports = function(db) {
     db.collection("tweets").insertOne(tweet, (err, result) => {
       res.json(result);
     });
-    return res.redirect('/');
   });
+
   return tweets;
 }

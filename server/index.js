@@ -1,3 +1,4 @@
+
 "use strict";
 
 require('dotenv').config();
@@ -13,10 +14,11 @@ const db         = require('./lib/db');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+
 db.connect((dbInstance) => {
   app.use('/tweets', tweetsApi(dbInstance));
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, function () {
   console.log("Example app listening on port " + PORT);
 });

@@ -52,11 +52,6 @@ article.tweet .content {
   color: black;
 }
 
-/* TODO: Height does not work, messes up for multi-line content
- * Temp. fix: made padding for content vary low
- * Tweets need a way to auto-format based on length !
- */
-
 article.tweet footer {
   height: 2em;
   width: 100%;
