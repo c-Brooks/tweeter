@@ -3,7 +3,7 @@ article.tweet {
   width: auto;
   height: auto;
   background-color: #e1e1ea;
-  margin: 6em 2em 6em 2em;
+  margin: 6em 2em 0em 2em;
   border: 5px solid black;
   border-radius: 10px
 }
@@ -21,6 +21,11 @@ article.tweet:hover > header {
   background-color: #b380ff;
   font-weight: bold;
 }
+article.tweet:hover > footer .widgets {
+  display: block;
+  margin-top: -8px;
+}
+
 footer .widgets {
   float: right;
   display: inline-block;
@@ -28,25 +33,16 @@ footer .widgets {
   display: none;
 }
 footer .widgets .flag {
-    display: inline-block;
-
-  content: url('../images/icons/icon-flag.png');
-  content-size: 20px;
+  display: inline-block;
+  content: url("../images/icons/icon-flag.png");
 }
 footer .widgets .like {
-    display: inline-block;
-
-  content: url('../images/icons/icon-like.png')
+  display: inline-block;
+  content: url("../images/icons/icon-like.png")
 }
 footer .widgets .retweet {
-    display: inline-block;
-
-  content: url('../images/icons/icon-retweet.png')
-}
-
-article.tweet:hover > footer .widgets {
-  display: block;
-  margin-top: -8px;
+  display: inline-block;
+  content: url("../images/icons/icon-retweet.png")
 }
 
 article.tweet .avatar {

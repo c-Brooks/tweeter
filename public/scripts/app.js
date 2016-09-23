@@ -1,22 +1,23 @@
 
 function loadTweets() {
-  $.getJSON('/tweets/', function(tweets) {
+  $.getJSON("/tweets/", function(tweets) {
       renderTweets(tweets);
   });
 }
 function renderTweets(tweets) {
   tweets.forEach(function (tweet) {
-    $('#tweets-container').append(createTweetElement(tweet));
+    $("#tweets-container").append(createTweetElement(tweet));
   });
+  // Set onClick listener. NOTE: I logged the message because alerting is obnoxious
      $( "#tweets-container" ).on( "click", "article", function( event ) {
     event.preventDefault();
-    console.log('Tweet, tweet!');
+    console.log("Tweet, tweet!");
   });
 }
 
 function loadOneTweet() {
- $.getJSON('/tweets/', function(tweets) {
-  $('#tweets-container').prepend(createTweetElement(tweets[0]));
+ $.getJSON("/tweets/", function(tweets) {
+  $("#tweets-container").prepend(createTweetElement(tweets[0]));
   });
 }
 
@@ -54,7 +55,6 @@ function createTweetElement(tweet) {
   // var $widgets = ($("<text>").addClass("widgets").append("WIDGETS HERE"));
 
   // $tweet = $("<article>").addClass("tweet");
-
   // $tweet.append($("<header>").append($avatar).append($username).append($handle));
   // $tweet.append($("<p>").addClass("content").append(tweet.content.text));
   // $tweet.append($("<footer>").append($date).append($widgets));
@@ -68,25 +68,25 @@ function createTweetElement(tweet) {
 $(function() {
   loadTweets();
 
-  $('#post-tweet').on('submit', function(event) {
+  $("#post-tweet").on("submit", function(event) {
     event.preventDefault();
 
 //        VALIDATION
-    if($('.counter').text() < 0){
-      alert('Your tweet is too short!');
+    if($(".counter").text() < 0){
+      alert("Your tweet is too short!");
       return false;
     }
-    if($('#tweet-text').val().match(/^\s*$/)){
-      alert('Your tweet is empty!');
+    if($("#tweet-text").val().match(/^\s*$/)){
+      alert("Your tweet is empty!");
       return false;
     }
 
     $.ajax({
-      url: $(this).attr('action'),
-      method: $(this).attr('method'),
+      url: $(this).attr("action"),
+      method: $(this).attr("method"),
       data: $(this).serialize(),
       success: function (data) {
-        $('<pre>').append(data);
+        $("<pre>").append(data);
         $("#post-tweet").html($("#post-tweet").html());
         loadOneTweet();
       }

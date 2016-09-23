@@ -18,7 +18,6 @@ module.exports = function(db) {
   });
 
   tweets.post("/", function(req, res) {
-
     console.log("New Tweet, Body: ", req.body);
     const user = req.body.user ? req.body.user : User.generateRandomUser();
     const tweet = {
@@ -28,7 +27,7 @@ module.exports = function(db) {
       },
       created_at: Date.now()
     };
-    db.collection("tweets").insertOne(tweet, (err, result) => {
+      db.collection("tweets").insertOne(tweet, (err, result) => {
       res.json(result);
     });
   });
