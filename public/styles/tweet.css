@@ -23,11 +23,30 @@ article.tweet:hover > header {
 }
 footer .widgets {
   float: right;
+  display: inline-block;
   margin: 0 10px 10px 0;
   display: none;
 }
+footer .widgets .flag {
+    display: inline-block;
+
+  content: url('../images/icons/icon-flag.png');
+  content-size: 20px;
+}
+footer .widgets .like {
+    display: inline-block;
+
+  content: url('../images/icons/icon-like.png')
+}
+footer .widgets .retweet {
+    display: inline-block;
+
+  content: url('../images/icons/icon-retweet.png')
+}
+
 article.tweet:hover > footer .widgets {
   display: block;
+  margin-top: -8px;
 }
 
 article.tweet .avatar {

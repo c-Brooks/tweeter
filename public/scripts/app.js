@@ -33,7 +33,11 @@ function createTweetElement(tweet) {
         "<p class='content'><%=content.text%></p>" +
         "<footer>" +
         "<text class='created_at'><%=getDaysSincePost(created_at)%></text>" +
-        "<text class='widgets'>widgets</text>" +
+        "<text class='widgets'>" +
+          "<div class='flag'></div>" +
+          "<div class='like'></div>" +
+          "<div class='retweet'></div>" +
+        "</text>" +
       "</footer>" +
     "</article>"
     );
