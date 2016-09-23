@@ -8,6 +8,10 @@ function renderTweets(tweets) {
   tweets.forEach(function (tweet) {
     $('#tweets-container').append(createTweetElement(tweet));
   });
+     $( "#tweets-container" ).on( "click", "article", function( event ) {
+    event.preventDefault();
+    console.log('Tweet, tweet!');
+  });
 }
 
 function loadOneTweet() {
@@ -17,23 +21,46 @@ function loadOneTweet() {
 }
 
 function createTweetElement(tweet) {
-  var $tweet
 
-  var $avatar = ($("<img>").addClass("avatar").attr('src', tweet.user.avatars.small));
-  var $username = ($("<text>").addClass("username").append(tweet.user.name));
-  var $handle = ($("<text>").addClass("handle").append(tweet.user.handle));
-  var $date = ($("<text>").addClass("created_at").append(getDateFromUnix(tweet.created_at)));
-  var $widgets = ($("<text>").addClass("widgets").append("WIDGETS HERE"));
+// Creating an underscore.js template:
+  var tweet_template = _.template(
+    "<article class='tweet'>" +
+      "<header>" +
+        "<img class='avatar'; src=<%=user.avatars.small%>>" +
+        "<text class='username'><%=user.name%></text>" +
+        "<text class='handle'><%=user.handle%></text>" +
+      "</header>" +
+        "<p class='content'><%=content.text%></p>" +
+        "<footer>" +
+        "<text class='created_at'><%=getDaysSincePost(created_at)%></text>" +
+        "<text class='widgets'>widgets</text>" +
+      "</footer>" +
+    "</article>"
+    );
 
-  $tweet = $("<article>").addClass("tweet");
-  $tweet.append($("<header>").append($avatar).append($username).append($handle));
-  $tweet.append($("<p>").addClass("content").append(tweet.content.text));
-  $tweet.append($("<footer>").append($date).append($widgets));
 
-  console.log($tweet);
-  return $tweet;
+//     FOR REFERENCE:
+// This is how to crete a DOM element using jQuery
+
+  // var $tweet
+  // var $avatar = ($("<img>").addClass("avatar").attr('src', tweet.user.avatars.small));
+  // var $username = ($("<text>").addClass("username").append(tweet.user.name));
+  // var $handle = ($("<text>").addClass("handle").append(tweet.user.handle));
+  // var $date = ($("<text>").addClass("created_at").append(getDaysSincePost(tweet.created_at)));
+  // var $widgets = ($("<text>").addClass("widgets").append("WIDGETS HERE"));
+
+  // $tweet = $("<article>").addClass("tweet");
+
+  // $tweet.append($("<header>").append($avatar).append($username).append($handle));
+  // $tweet.append($("<p>").addClass("content").append(tweet.content.text));
+  // $tweet.append($("<footer>").append($date).append($widgets));
+  // console.log($tweet);
+
+  return tweet_template(tweet);
 }
 
+
+// Driver code
 $(function() {
   loadTweets();
 
@@ -45,7 +72,7 @@ $(function() {
       alert('Your tweet is too short!');
       return false;
     }
-    if($('.counter').text() == 140){
+    if($('#tweet-text').val().match(/^\s*$/)){
       alert('Your tweet is empty!');
       return false;
     }
@@ -63,27 +90,31 @@ $(function() {
   });
 });
 
-function getDateFromUnix(unixTime) {
-  var date = new Date(unixTime);
-  var dateString = date.toDateString()
-  dateString = dateString.slice(0, dateString.length - 5); // Get rid of year
-  var timeString = date.toLocaleTimeString();
-  timeString = timeString.slice(0, timeString.length - 6) + timeString.slice(timeString.length - 3); // Get rid of # seconds
-  return "Posted on " + dateString + " at " +  timeString
-}
+// Formatting the date posted
 
-
-function getTimeSincePost(unixTime) {
+function getDaysSincePost(unixTime) {
   var currentTime = new Date;
-  var timeSincePost = currentTime - unixTime;
-  var daysSincePost = Math.floor(timeSincePost/(3600*24));
+  var secSincePost = (currentTime - unixTime)/1000;   // convert ms to sec
+  var daysSincePost = Math.floor(secSincePost/(3600*24));
 
-  if (/*daysSincePost > 5*/false) {
-    return getDateFromUnix(unixTime);
-  } else if (daysSincePost > 1) {
-    return "Posted" + daysSincePost + "days ago";
+  if (daysSincePost > 5) {
+    return getDateFromSec(unixTime/1000);
+  } else if (daysSincePost <= 1) {
+    return getTimeSincePost(secSincePost);
   } else {
-    return "Posted" + daysSincePost + "days ago";
+    return "Posted " + daysSincePost + " days ago";
   }
 }
 
+function getTimeSincePost(seconds){
+  var hours = (Math.floor(seconds/(3600) % 24));
+  var mins  = (Math.floor((seconds/60)) % 60);
+  return hours >= 1 ? "Posted " + hours + " hours, " + mins + " minutes ago" : "Posted " + mins + " minutes ago";
+}
+
+function getDateFromSec(seconds) {
+  var date = new Date(seconds);
+  var dateString = date.toDateString()
+  dateString = dateString.slice(0, dateString.length - 5); // Get rid of year
+  return "Posted on " + dateString;
+}

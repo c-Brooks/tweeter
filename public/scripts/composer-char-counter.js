@@ -1,8 +1,8 @@
 $(function () {
   var origNum = $('.counter').text();
 
-  $("[name = 'text']").on('keyup', function () {
-    var newNum = origNum - $("[name = 'text']").val().length;
+  $('#tweet-text').on('keyup', function () {
+    var newNum = origNum - $('#tweet-text ').val().length;
 
     if (newNum < 0) {
       $('.counter').css({'color': 'red'})
